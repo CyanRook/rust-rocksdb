@@ -260,6 +260,12 @@ impl Options {
         }
     }
 
+    pub fn set_compression_max_dict_bytes(&mut self, max_dict_bytes: usize) {
+        unsafe {
+            ffi::rocksdb_options_set_compression_options(self.inner, -14, -1, 0, max_dict_bytes as i32);
+        }
+    }
+
     /// If non-zero, we perform bigger reads when doing compaction. If you're
     /// running RocksDB on spinning disks, you should set this to at least 2MB.
     /// That way RocksDB's compaction is doing sequential instead of random reads.
