@@ -1848,6 +1848,10 @@ impl ReadOptions {
             ffi::rocksdb_readoptions_set_readahead_size(self.inner, v as size_t);
         }
     }
+
+    pub fn set_verify_checksum(&mut self, v: bool) {
+        unsafe { ffi::rocksdb_readoptions_set_verify_checksums(self.inner, v as c_uchar)}
+    }
 }
 
 impl Default for ReadOptions {
